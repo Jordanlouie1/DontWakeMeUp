@@ -6,9 +6,6 @@ from adafruit_ble.services.nordic import UARTService
 import time
 import adafruit_ble_broadcastnet
 
-
-clue.sea_level_pressure = 1020
-
 clue_data = clue.simple_text_display(title="CLUE Sensor Data!", title_scale=2)
 
 ble = BLERadio()
