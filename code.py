@@ -15,6 +15,7 @@ advertisement = ProvideServicesAdvertisement(uart)
 print("This is BroadcastNet CLUE sensor:", adafruit_ble_broadcastnet.device_address)
 
 while True:
+    clue.pixel.fill((0, 255, 0))
     measurement = adafruit_ble_broadcastnet.AdafruitSensorMeasurement()
     clue_data[0].text = "Acceleration: {:.2f} {:.2f} {:.2f}".format(*clue.acceleration)
     clue_data[1].text = "Gyro: {:.2f} {:.2f} {:.2f}".format(*clue.gyro)
@@ -26,6 +27,8 @@ while True:
         # send signal to raspberry pie
         measurement.acceleration = clue.acceleration
         adafruit_ble_broadcastnet.broadcast(measurement)
+        clue.pixel.fill((255, 0, 0))
+
         time.sleep(10)
     else:
         clue_data[4].text = "Shake: FALSE"
